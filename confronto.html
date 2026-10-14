@@ -146,6 +146,7 @@ body { background: var(--bg); color: var(--fg); font-family: 'Manrope', system-u
     <a href="#velluto">Velluto</a>
     <a href="#mezzanotte">Mezzanotte</a>
     <a href="#ambra">Ambra</a>
+    <a href="#deco">Art Déco</a>
     <a href="#direzioni">Direzioni A–I</a>
     <a href="#bancone">Il Bancone</a>
   </nav>
@@ -161,6 +162,7 @@ body { background: var(--bg); color: var(--fg); font-family: 'Manrope', system-u
     <li><a href="#velluto"><em>Famiglia Lume</em><b>Velluto</b><span>Nero ciliegia, blocchi di misure diverse, scheda su cartoncino avorio.</span></a></li>
     <li><a href="#mezzanotte"><em>Famiglia Lume</em><b>Mezzanotte</b><span>Blu notte e platino, Bodoni corsivo, schede arrotondate.</span></a></li>
     <li><a href="#ambra"><em>Nuova · tra attuale e Lume</em><b>Ambra</b><span>La struttura dell'app di oggi con la veste di Lume e un oro ambrato.</span></a></li>
+    <li><a href="#deco"><em>Completa · dalla direzione E</em><b>Art Déco</b><span>Velluto verde e ottone, archi, raggiere e prezzi con i puntini.</span></a></li>
     <li><a href="#direzioni"><em>Esplorate</em><b>Direzioni A–I</b><span>Diagnosi del menu attuale e nove direzioni a blocchi.</span></a></li>
     <li><a href="#bancone"><em>Archivio</em><b>Il Bancone</b><span>Ripiani con le bottiglie: scartato perché troppo giocoso.</span></a></li>
   </ul>
@@ -180,6 +182,9 @@ body { background: var(--bg); color: var(--fg); font-family: 'Manrope', system-u
 
 <div class="band" id="ambra"><p class="k">Versione 4 · tra l'attuale e Lume</p></div>
 <div class="host" data-tpl="t-ambra" data-init="initAmbra"></div>
+
+<div class="band" id="deco"><p class="k">Versione 5 · Art Déco</p></div>
+<div class="host" data-tpl="t-deco" data-init="initDeco"></div>
 
 <div class="band" id="direzioni"><p class="k">Direzioni esplorate · A–I</p></div>
 <div class="host" data-tpl="t-direzioni"></div>
@@ -1808,6 +1813,444 @@ button:focus-visible, textarea:focus-visible { outline: 1px solid var(--amber); 
       <button data-jump="order">Ordine</button>
     </div>
     <p class="hint">Prototipo cliccabile · tutte le 15 categorie, prodotti e prezzi veri</p>
+  </div>
+</div></template>
+<template id="t-deco"><style>
+/* Layout: manifesto a sinistra, prototipo cliccabile a destra; velluto verde, ottone, archi e raggiere da cocktail bar anni Venti */
+:host {
+  --green: #0f2923;
+  --deep: #0a1f1a;
+  --panel: #13352d;
+  --brass: #d4af68;
+  --brass2: #e6c98c;
+  --ivory: #efe6d2;
+  --mute: rgba(239,230,210,.62);
+  --hair: rgba(212,175,104,.42);
+  --line: rgba(212,175,104,.2);
+  --deco: 'Poiret One', 'Futura', 'Gill Sans', sans-serif;
+  --italic: 'Cormorant Garamond', 'Garamond', Georgia, serif;
+  --ui: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  display: block; color: var(--ivory); font-family: var(--ui); font-size: 16px; line-height: 1.6; color-scheme: dark; -webkit-font-smoothing: antialiased;
+  font-variant-numeric: lining-nums;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+p { margin: 0; }
+button { font: inherit; }
+.caps { font-family: var(--ui); font-size: 9.5px; letter-spacing: .34em; text-transform: uppercase; color: var(--brass); }
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 22px; padding-block: 40px 90px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 72px; align-items: start; }
+
+/* ---------- Manifesto ---------- */
+.intro { position: sticky; top: 84px; padding-top: 20px; }
+.intro .k { font-family: var(--ui); font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--brass); }
+.intro h1 { font-family: var(--deco); font-weight: 400; font-size: clamp(60px, 8.5vw, 104px); line-height: .95; letter-spacing: .08em; text-transform: uppercase; margin: 18px 0 0; color: var(--brass2); }
+.intro .sub { font-family: var(--italic); font-style: italic; font-size: 26px; opacity: .88; margin-top: 12px; }
+.intro .lead { margin-top: 26px; max-width: 46ch; color: #d6cdb8; font-size: 17px; }
+.intro .dia { margin: 34px 0 26px; width: 120px; }
+.princ { display: grid; gap: 22px; max-width: 46ch; }
+.princ h3 { font-family: var(--deco); font-weight: 400; font-size: 19px; letter-spacing: .16em; text-transform: uppercase; margin: 0; color: var(--brass2); }
+.princ p { color: var(--mute); font-size: 15px; margin-top: 4px; }
+.try { margin-top: 34px; font-family: var(--italic); font-style: italic; font-size: 19px; color: var(--brass); }
+
+/* ---------- Motivi ---------- */
+.dia { display: flex; align-items: center; gap: 8px; width: 170px; margin: 14px auto 0; }
+.dia i { flex: 1; height: 1px; background: var(--brass); }
+.dia s { width: 7px; height: 7px; transform: rotate(45deg); border: 1px solid var(--brass); }
+.rays { position: absolute; left: 50%; width: 440px; height: 440px; transform: translateX(-50%); border-radius: 50%; pointer-events: none; background: repeating-conic-gradient(from 0deg, rgba(212,175,104,.2) 0 1.4deg, transparent 1.4deg 9deg); -webkit-mask: radial-gradient(circle, #000 18%, transparent 66%); mask: radial-gradient(circle, #000 18%, transparent 66%); }
+.arch { position: relative; display: block; border-radius: 999px 999px 4px 4px; overflow: hidden; outline: 1px solid rgba(212,175,104,.75); outline-offset: 4px; background: var(--deep); }
+.ph { position: absolute; inset: 0; background-size: cover; background-position: center; filter: sepia(.5) saturate(.62) contrast(1.05) brightness(.8); transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+.arch::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,41,35,0) 55%, rgba(15,41,35,.55)); }
+.subh { display: flex; align-items: center; gap: 10px; margin: 26px 0 8px; font-family: var(--deco); font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--brass); white-space: nowrap; }
+.subh i { flex: 1; height: 1px; background: var(--line); }
+.subh s { width: 6px; height: 6px; transform: rotate(45deg); background: var(--brass); }
+
+/* ---------- Telefono ---------- */
+.stagecol { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; justify-items: center; min-width: 0; }
+.device { width: 390px; max-width: 100%; height: 820px; border-radius: 46px; padding: 9px; background: linear-gradient(145deg, #3a3222, #0b0a07 40%, #2b2618); box-shadow: 0 50px 90px -40px rgba(0,0,0,.9), 0 0 0 1px rgba(212,175,104,.3); }
+.screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: repeating-linear-gradient(90deg, rgba(255,255,255,.026) 0 1px, transparent 1px 9px), var(--green); }
+.view { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; overscroll-behavior: contain; opacity: 0; visibility: hidden; transition: opacity .4s ease, visibility 0s linear .4s; }
+.view::-webkit-scrollbar { display: none; }
+.view.on { opacity: 1; visibility: visible; transition: opacity .4s ease; }
+.switch { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.switch button { font-family: var(--ui); font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--mute); background: none; border: 1px solid var(--hair); border-radius: 999px; padding: 9px 15px; cursor: pointer; }
+.switch button.on, .switch button:hover { color: var(--green); background: var(--brass); border-color: var(--brass); }
+button:focus-visible, input:focus-visible { outline: 1px solid var(--brass2); outline-offset: 3px; }
+.hint { font-size: 13px; color: var(--mute); }
+.ib { position: absolute; top: 18px; z-index: 4; width: 40px; height: 40px; padding: 0; border-radius: 50%; border: 1px solid var(--hair); background: rgba(10,31,26,.55); color: var(--brass2); display: grid; place-items: center; cursor: pointer; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.ib svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.3; }
+.ib.l { left: 16px; }
+.ib.r { right: 16px; }
+.ib sup { position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 999px; background: var(--brass); color: var(--green); font: 700 10px var(--ui); display: grid; place-items: center; line-height: 1; }
+.ib sup:empty { display: none; }
+
+/* Home */
+.top { position: relative; text-align: center; padding: 34px 18px 8px; overflow: hidden; }
+.top .rays { top: -170px; }
+.word { position: relative; font-family: var(--deco); font-size: 34px; letter-spacing: .34em; padding-left: .34em; color: var(--brass2); line-height: 1; margin-top: 18px; }
+.word2 { position: relative; font-size: 8.5px; letter-spacing: .55em; padding-left: .55em; margin-top: 9px; color: var(--ivory); }
+.table { position: relative; margin-top: 14px; font-family: var(--italic); font-style: italic; font-size: 16px; color: var(--mute); }
+.banner { position: relative; display: block; width: calc(100% - 44px); margin: 18px 22px 4px; padding: 1px; border: 0; background: var(--brass); cursor: pointer; color: inherit; clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px); }
+.banner > span { display: block; padding: 15px 14px 14px; text-align: center; background: linear-gradient(rgba(212,175,104,.1), rgba(212,175,104,.1)), var(--green); clip-path: polygon(11.5px 0, calc(100% - 11.5px) 0, 100% 11.5px, 100% calc(100% - 11.5px), calc(100% - 11.5px) 100%, 11.5px 100%, 0 calc(100% - 11.5px), 0 11.5px); }
+.banner small { display: block; font-size: 8.5px; letter-spacing: .42em; color: var(--ivory); }
+.banner b { display: block; margin-top: 4px; font-family: var(--deco); font-weight: 400; font-size: 19px; letter-spacing: .24em; color: var(--brass2); }
+.banner em { display: block; font-family: var(--italic); font-size: 15px; color: rgba(239,230,210,.82); }
+.arches { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 18px; padding: 24px 24px 0; }
+.ac { display: block; padding: 0; border: 0; background: none; color: inherit; text-align: center; cursor: pointer; }
+.ac .arch { aspect-ratio: 3 / 4; }
+.ac:hover .ph { transform: scale(1.05); }
+.ac b { display: block; margin-top: 15px; font-family: var(--deco); font-weight: 400; font-size: 14px; letter-spacing: .22em; text-transform: uppercase; color: var(--brass2); }
+.ac em { display: block; font-family: var(--italic); font-size: 14.5px; color: rgba(239,230,210,.78); line-height: 1.3; }
+.home-more { padding: 6px 24px 0; }
+.idx { width: 100%; display: flex; align-items: baseline; gap: 10px; padding: 14px 0; border: 0; border-bottom: 1px solid var(--line); background: none; color: var(--ivory); cursor: pointer; text-align: left; }
+.idx s { flex: 0 0 auto; width: 6px; height: 6px; transform: rotate(45deg) translateY(-2px); border: 1px solid var(--brass); }
+.idx b { font-family: var(--deco); font-weight: 400; font-size: 14px; letter-spacing: .2em; text-transform: uppercase; }
+.idx i { flex: 1; border-bottom: 1px dotted rgba(212,175,104,.45); transform: translateY(-4px); }
+.idx span { font-family: var(--italic); font-size: 16px; color: var(--brass); }
+.colophon { padding: 34px 24px 120px; text-align: center; font-family: var(--italic); font-style: italic; font-size: 16px; color: var(--mute); }
+
+/* Barra dell'ordine */
+.orderbar { position: absolute; left: 22px; right: 22px; bottom: 16px; z-index: 6; display: flex; align-items: center; justify-content: space-between; padding: 13px 20px; border: 0; border-radius: 999px; background: var(--brass); color: var(--green); font-family: var(--deco); font-size: 13px; letter-spacing: .18em; cursor: pointer; box-shadow: 0 12px 30px -10px rgba(0,0,0,.7); transform: translateY(150%); transition: transform .45s cubic-bezier(.2,.8,.2,1); }
+.orderbar.show { transform: none; }
+
+/* Categoria */
+.chero { position: relative; text-align: center; padding: 74px 24px 6px; overflow: hidden; }
+.chero .rays { top: -60px; width: 520px; height: 520px; }
+.chero .arch { width: 188px; height: 236px; margin: 0 auto; }
+.chero .caps { position: relative; margin-top: 24px; }
+.chero h2 { position: relative; margin: 8px 0 6px; font-family: var(--deco); font-weight: 400; font-size: 40px; letter-spacing: .2em; padding-left: .2em; text-transform: uppercase; color: var(--brass2); line-height: 1.05; }
+.chero p.i { position: relative; font-family: var(--italic); font-style: italic; font-size: 17px; color: rgba(239,230,210,.85); max-width: 30ch; margin: 0 auto; line-height: 1.35; }
+.clist { padding: 6px 22px 120px; }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: center; border-bottom: 1px solid var(--line); }
+.row-open { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 14px; align-items: center; min-width: 0; padding: 13px 0; border: 0; background: none; color: inherit; text-align: left; cursor: pointer; }
+.mini { position: relative; width: 44px; height: 58px; border-radius: 999px 999px 3px 3px; outline: 1px solid var(--hair); outline-offset: 2px; background: radial-gradient(60% 50% at 50% 65%, rgba(212,175,104,.22), transparent 72%), var(--deep); display: grid; place-items: center; overflow: hidden; }
+.mini .cut { position: absolute; inset: 7px 4px 3px; background-size: contain; background-position: center bottom; background-repeat: no-repeat; }
+.mini .ini { font-family: var(--deco); font-size: 20px; color: var(--brass); }
+.rt { min-width: 0; }
+.rn { display: flex; align-items: baseline; gap: 6px; }
+.rn b { font-family: var(--deco); font-weight: 400; font-size: 13.5px; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.rn i { flex: 1; min-width: 12px; border-bottom: 1px dotted rgba(212,175,104,.5); transform: translateY(-4px); }
+.rn .pr { font-family: var(--italic); font-size: 18px; color: var(--brass2); white-space: nowrap; }
+.rn .na { font-family: var(--italic); font-style: italic; font-size: 15px; color: var(--mute); white-space: nowrap; }
+.rt em { display: block; margin-top: 2px; font-family: var(--italic); font-style: italic; font-size: 14.5px; color: var(--mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dplus { width: 26px; height: 26px; margin: 0 6px 0 4px; padding: 0; transform: rotate(45deg); border: 1px solid var(--brass); background: none; color: var(--brass2); cursor: pointer; display: grid; place-items: center; transition: background .2s, color .2s; }
+.dplus > span { transform: rotate(-45deg); font: 600 13px var(--ui); line-height: 1; }
+.dplus.in { background: var(--brass); color: var(--green); }
+
+/* Ricerca */
+.stop { position: sticky; top: 0; z-index: 3; display: flex; align-items: center; gap: 12px; padding: 18px 18px 12px 66px; background: linear-gradient(var(--green) 80%, rgba(15,41,35,0)); }
+.stop input { flex: 1; min-width: 0; height: 40px; border: 0; border-bottom: 1px solid var(--brass); background: none; color: var(--ivory); font-family: var(--italic); font-style: italic; font-size: 20px; outline: none; }
+.stop input::placeholder { color: var(--mute); }
+.stop input::-webkit-search-cancel-button { display: none; }
+/* Sul fondo ottone il Poiret One, molto sottile, va scurito e ispessito per restare leggibile */
+.opts button.sel, .serve button.sel, .cta, .orderbar, .toast { color: #0a1d18; -webkit-text-stroke: .4px currentColor; }
+.cta[disabled] { -webkit-text-stroke: 0; }
+.slist { padding: 4px 22px 120px; }
+.none { padding: 40px 10px; text-align: center; font-family: var(--italic); font-style: italic; font-size: 18px; color: var(--mute); }
+
+/* Scheda prodotto */
+.pdp { position: relative; text-align: center; padding: 70px 26px 150px; overflow: hidden; }
+.pdp .rays { top: 0; width: 560px; height: 560px; }
+.window { position: relative; width: 210px; height: 280px; margin: 0 auto; border-radius: 999px 999px 4px 4px; outline: 1px solid rgba(212,175,104,.8); outline-offset: 5px; background: radial-gradient(70% 55% at 50% 62%, rgba(212,175,104,.28), transparent 72%), var(--deep); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 18px; overflow: hidden; }
+.window::after { content: ''; position: absolute; left: 30%; right: 30%; bottom: 14px; height: 10px; border-radius: 50%; background: rgba(0,0,0,.6); filter: blur(6px); }
+.big { position: relative; z-index: 1; width: 128px; height: 220px; background-size: contain; background-position: center bottom; background-repeat: no-repeat; animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
+.big.ini { width: 120px; height: 120px; margin-bottom: 60px; display: grid; place-items: center; font-family: var(--deco); font-size: 64px; color: var(--brass); }
+@keyframes rise { from { transform: translateY(14px); opacity: 0; } to { transform: none; opacity: 1; } }
+.pdp .caps { position: relative; margin-top: 30px; }
+.pdp h2 { position: relative; margin: 10px 0 4px; font-family: var(--deco); font-weight: 400; font-size: 32px; letter-spacing: .18em; padding-left: .18em; text-transform: uppercase; color: var(--brass2); line-height: 1.1; }
+.pprice { position: relative; font-family: var(--italic); font-size: 24px; color: var(--ivory); }
+.pdesc { position: relative; margin-top: 10px; font-family: var(--italic); font-style: italic; font-size: 17px; color: rgba(239,230,210,.82); line-height: 1.4; }
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px; }
+.opts button { height: 70px; padding-top: 10px; border: 1px solid var(--hair); border-radius: 999px 999px 4px 4px; background: rgba(10,31,26,.6); color: var(--ivory); font-family: var(--deco); font-size: 15px; letter-spacing: .24em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+.opts button.sel { background: var(--brass); border-color: var(--brass); color: var(--green); }
+.req { display: block; width: 100%; margin-top: 4px; padding: 10px 0; border: 0; border-bottom: 1px solid var(--hair); background: none; color: var(--ivory); font-family: var(--italic); font-style: italic; font-size: 18px; text-align: center; }
+.req::placeholder { color: var(--mute); }
+.dock { position: absolute; left: 0; right: 0; bottom: 0; z-index: 6; display: flex; align-items: center; gap: 12px; padding: 30px 18px 18px; background: linear-gradient(180deg, rgba(15,41,35,0), var(--green) 38%); transform: translateY(110%); transition: transform .4s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
+.dock > * { pointer-events: auto; }
+.dock.show { transform: none; }
+.qty { display: flex; align-items: center; height: 52px; border: 1px solid var(--hair); border-radius: 999px; }
+.qty button { width: 40px; height: 100%; border: 0; background: none; color: var(--brass2); font-size: 19px; cursor: pointer; }
+.qty span { min-width: 18px; text-align: center; font: 700 15px var(--ui); }
+.cta { flex: 1; height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 22px; border: 0; border-radius: 999px; background: var(--brass); color: var(--green); font-family: var(--deco); font-size: 14px; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: opacity .2s; }
+.cta i { font-family: var(--italic); font-style: normal; font-size: 19px; letter-spacing: 0; text-transform: none; }
+.cta[disabled] { opacity: .45; cursor: not-allowed; justify-content: center; font-family: var(--italic); font-style: italic; font-size: 18px; letter-spacing: 0; text-transform: none; }
+.cta[disabled] i { display: none; }
+.dock .tt { flex: 1; }
+.dock .tt span { display: block; font-size: 9px; letter-spacing: .34em; color: var(--mute); }
+.dock .tt b { font-family: var(--italic); font-weight: 500; font-size: 28px; color: var(--brass2); line-height: 1.1; }
+.dock .send { flex: 0 0 auto; padding: 0 26px; justify-content: center; }
+
+/* Ordine */
+.ord { position: relative; padding: 70px 22px 150px; text-align: center; overflow: hidden; }
+.ord .rays { top: -230px; }
+.ord h2 { position: relative; margin: 10px 0 0; font-family: var(--deco); font-weight: 400; font-size: 26px; letter-spacing: .24em; padding-left: .24em; text-transform: uppercase; color: var(--brass2); }
+.lines { margin-top: 16px; text-align: left; }
+.ln { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 14px; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.ln .rn b { font-size: 13px; }
+.ln em { display: block; font-family: var(--italic); font-style: italic; font-size: 14.5px; color: var(--mute); }
+.step { display: inline-flex; align-items: center; gap: 12px; margin-top: 6px; font: 700 13px var(--ui); }
+.step button { width: 24px; height: 24px; padding: 0; border: 1px solid var(--hair); border-radius: 50%; background: none; color: var(--brass2); cursor: pointer; line-height: 1; }
+.empty { padding: 26px 0; text-align: center; font-family: var(--italic); font-style: italic; font-size: 18px; color: var(--mute); }
+.serve { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.serve button { padding: 22px 8px 12px; border: 1px solid var(--hair); border-radius: 999px 999px 4px 4px; background: rgba(10,31,26,.6); color: var(--ivory); cursor: pointer; transition: background .25s, color .25s; }
+.serve b { display: block; font-family: var(--deco); font-weight: 400; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; }
+.serve span { display: block; margin-top: 2px; font-family: var(--italic); font-style: italic; font-size: 14px; opacity: .8; }
+.serve button.sel { background: var(--brass); border-color: var(--brass); color: var(--green); }
+.field { margin-top: 22px; text-align: left; }
+.field label { display: block; font-size: 9.5px; letter-spacing: .34em; text-transform: uppercase; color: var(--brass); }
+.field input { display: block; width: 100%; margin-top: 4px; padding: 8px 0 9px; border: 0; border-bottom: 1px solid var(--hair); background: none; color: var(--ivory); font-family: var(--italic); font-size: 20px; outline: none; }
+.field input:focus { border-bottom-color: var(--brass2); }
+.field.err input { border-bottom-color: #e0937a; }
+.field .msg { display: none; margin-top: 6px; font-size: 12.5px; color: #eab09c; }
+.field.err .msg { display: block; }
+.paynote { margin-top: 24px; font-family: var(--italic); font-style: italic; font-size: 16px; color: var(--mute); }
+
+/* Conferma */
+.done { position: relative; min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 28px; text-align: center; overflow: hidden; }
+.done .rays { top: 50%; width: 640px; height: 640px; transform: translate(-50%, -62%); }
+.done h2 { position: relative; margin: 16px 0 8px; font-family: var(--deco); font-weight: 400; font-size: 54px; letter-spacing: .24em; padding-left: .24em; color: var(--brass2); line-height: 1; }
+.done .where { position: relative; font-family: var(--italic); font-size: 21px; color: var(--ivory); }
+.steps { position: relative; display: grid; width: 220px; margin: 30px auto 0; text-align: left; }
+.steps div { display: flex; align-items: center; gap: 14px; padding: 8px 0; font-family: var(--deco); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--mute); }
+.steps div::before { content: ''; flex: 0 0 auto; width: 9px; height: 9px; border: 1px solid var(--brass); transform: rotate(45deg); }
+.steps .now { color: var(--ivory); }
+.steps .now::before { background: var(--brass); }
+.link { position: relative; margin-top: 34px; padding: 0 0 6px; border: 0; border-bottom: 1px solid var(--brass); background: none; color: var(--brass2); font-family: var(--deco); font-size: 13px; letter-spacing: .26em; text-transform: uppercase; cursor: pointer; }
+
+.toast { position: absolute; left: 50%; top: 20px; z-index: 9; padding: 9px 20px; border-radius: 999px; background: var(--brass); color: var(--green); font-family: var(--deco); font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; opacity: 0; visibility: hidden; transform: translate(-50%, -220%); transition: transform .4s cubic-bezier(.2,.8,.2,1), opacity .3s; }
+.toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .view, .view.on, .orderbar, .dock, .toast, .ph { transition: none; }
+  .big { animation: none; }
+}
+@media (max-width: 1000px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 44px; }
+  .intro { position: static; }
+}
+@media (max-width: 430px) {
+  .device { height: 760px; border-radius: 40px; padding: 7px; }
+  .screen { border-radius: 33px; }
+}
+
+.sx-aperitivi{background-image:var(--sx-aperitivi)}
+.sx-caffetteria{background-image:var(--sx-caffetteria)}
+.sx-bevande-varie{background-image:var(--sx-bevande-varie)}
+.sx-bibite-aperitivo{background-image:var(--sx-bibite-aperitivo)}
+.sx-i-piu-commerciali{background-image:var(--sx-i-piu-commerciali)}
+.sx-gin{background-image:var(--sx-gin)}
+.sx-birra{background-image:var(--sx-birra)}
+.sx-vini-bianchi{background-image:var(--sx-vini-bianchi)}
+.sx-vini-rossi{background-image:var(--sx-vini-rossi)}
+.sx-cocktail-analcolici{background-image:var(--sx-cocktail-analcolici)}
+.sx-amari{background-image:var(--sx-amari)}
+.sx-whisky{background-image:var(--sx-whisky)}
+.sx-grappe-e-rum{background-image:var(--sx-grappe-e-rum)}
+.sx-liquori-aromatici{background-image:var(--sx-liquori-aromatici)}
+.sx-speciali{background-image:var(--sx-speciali)}
+.px-caffe{background-image:var(--px-caffe)}
+.px-cappuccino{background-image:var(--px-cappuccino)}
+.px-the-pesca{background-image:var(--px-the-pesca)}
+.px-the-limone{background-image:var(--px-the-limone)}
+.px-coca-cola{background-image:var(--px-coca-cola)}
+.px-coca-cola-zero{background-image:var(--px-coca-cola-zero)}
+.px-lemonsoda{background-image:var(--px-lemonsoda)}
+.px-acqua-tonica{background-image:var(--px-acqua-tonica)}
+.px-fanta{background-image:var(--px-fanta)}
+.px-redbull{background-image:var(--px-redbull)}
+.px-campari-soda{background-image:var(--px-campari-soda)}
+.px-cocktail-san-pellegrino{background-image:var(--px-cocktail-san-pellegrino)}
+.px-crodino{background-image:var(--px-crodino)}
+.px-aperol-spritz{background-image:var(--px-aperol-spritz)}
+.px-campari-spritz{background-image:var(--px-campari-spritz)}
+.px-hugo-spritz{background-image:var(--px-hugo-spritz)}
+.px-passoa-spritz{background-image:var(--px-passoa-spritz)}
+.px-malibu-spritz{background-image:var(--px-malibu-spritz)}
+.px-americano{background-image:var(--px-americano)}
+.px-vodka-martini{background-image:var(--px-vodka-martini)}
+.px-cuba-libre{background-image:var(--px-cuba-libre)}
+.px-gin-fizz{background-image:var(--px-gin-fizz)}
+.px-mojito-malibu{background-image:var(--px-mojito-malibu)}
+.px-pina-colada{background-image:var(--px-pina-colada)}
+.px-mojito{background-image:var(--px-mojito)}
+.px-margarita{background-image:var(--px-margarita)}
+.px-quattro-bianchi{background-image:var(--px-quattro-bianchi)}
+.px-redbull-wodka{background-image:var(--px-redbull-wodka)}
+.px-portofino{background-image:var(--px-portofino)}
+.px-mare-capri{background-image:var(--px-mare-capri)}
+.px-mare{background-image:var(--px-mare)}
+.px-hendricks{background-image:var(--px-hendricks)}
+.px-mazzetti{background-image:var(--px-mazzetti)}
+.px-nordes{background-image:var(--px-nordes)}
+.px-malfy-rosa{background-image:var(--px-malfy-rosa)}
+.px-butterfly{background-image:var(--px-butterfly)}
+.px-bombay{background-image:var(--px-bombay)}
+.px-tanqueray{background-image:var(--px-tanqueray)}
+.px-tanqueray-sevilla{background-image:var(--px-tanqueray-sevilla)}
+.px-apenera{background-image:var(--px-apenera)}
+.px-tennets{background-image:var(--px-tennets)}
+.px-corona{background-image:var(--px-corona)}
+.px-ceres{background-image:var(--px-ceres)}
+.px-becks{background-image:var(--px-becks)}
+.px-messina-cristalli-di-sale{background-image:var(--px-messina-cristalli-di-sale)}
+.px-heineken{background-image:var(--px-heineken)}
+.px-birra-dello-stretto{background-image:var(--px-birra-dello-stretto)}
+.px-vino-bianco{background-image:var(--px-vino-bianco)}
+.px-sampieri{background-image:var(--px-sampieri)}
+.px-bianco-di-nera{background-image:var(--px-bianco-di-nera)}
+.px-rosso-di-nera{background-image:var(--px-rosso-di-nera)}
+.px-mojito-analcolico{background-image:var(--px-mojito-analcolico)}
+.px-virgin-spritz{background-image:var(--px-virgin-spritz)}
+.px-tropical-sunset{background-image:var(--px-tropical-sunset)}
+.px-berry-tonic{background-image:var(--px-berry-tonic)}
+.px-gold-sunset{background-image:var(--px-gold-sunset)}
+.px-amaro-del-capo{background-image:var(--px-amaro-del-capo)}
+.px-amaro-averna{background-image:var(--px-amaro-averna)}
+.px-amaro-montenegro{background-image:var(--px-amaro-montenegro)}
+.px-branca-menta{background-image:var(--px-branca-menta)}
+.px-fernet-branca{background-image:var(--px-fernet-branca)}
+.px-unicum{background-image:var(--px-unicum)}
+.px-vecchia-romagna{background-image:var(--px-vecchia-romagna)}
+.px-glen-grant{background-image:var(--px-glen-grant)}
+.px-jack-daniels{background-image:var(--px-jack-daniels)}
+.px-chivas{background-image:var(--px-chivas)}
+.px-don-papa{background-image:var(--px-don-papa)}
+.px-diplomatico{background-image:var(--px-diplomatico)}
+.px-tequila{background-image:var(--px-tequila)}
+.px-baileys{background-image:var(--px-baileys)}
+.px-disaronno{background-image:var(--px-disaronno)}
+.px-limoncello{background-image:var(--px-limoncello)}
+.px-sambuca{background-image:var(--px-sambuca)}
+.px-southern-comfort{background-image:var(--px-southern-comfort)}
+</style><div class="wrap">
+  <div class="intro">
+    <p class="k">Versione 5 · dalla direzione E</p>
+    <h1>Art Déco</h1>
+    <p class="sub">Velluto verde, ottone e geometria.</p>
+    <p class="lead">La carta di un cocktail bar anni Venti: fondo verde bottiglia a righe sottili come una tappezzeria, dettagli in ottone, ogni categoria affacciata in una finestra ad arco. È la versione con il carattere più forte e riconoscibile.</p>
+    <div class="dia"><i></i><s></s><i></i></div>
+    <div class="princ">
+      <div><h3>Verde e ottone</h3><p>Un solo fondo, verde velluto a righe sottili. L'ottone è riservato a filetti, archi, prezzi e pulsanti: nessun altro colore.</p></div>
+      <div><h3>Archi e raggiere</h3><p>Le foto stanno in finestre ad arco con doppio filo dorato e ricevono tutte la stessa luce calda. Una raggiera fa da sfondo al logo, alle schede e alla conferma.</p></div>
+      <div><h3>Lettere geometriche</h3><p>I nomi sono in maiuscolo geometrico molto spaziato (Poiret One), le descrizioni e i prezzi in corsivo classico. Rombi al posto dei punti elenco.</p></div>
+      <div><h3>Una carta da leggere</h3><p>Dentro le categorie i prezzi sono legati ai nomi da una fila di puntini, come nelle carte stampate dell'epoca. Il + è un piccolo rombo d'ottone.</p></div>
+    </div>
+    <p class="try">Provalo nel telefono: apri il Gin, scegli Hendricks con lemon e invia l'ordine.</p>
+  </div>
+
+  <div class="stagecol">
+    <div class="device"><div class="screen">
+
+      <!-- HOME -->
+      <section class="view on" data-view="home" aria-label="La carta">
+        <header class="top">
+          <div class="rays"></div>
+          <button class="ib l" data-go="search" aria-label="Cerca"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg></button>
+          <button class="ib r" data-go="order" aria-label="Il vostro ordine"><svg viewBox="0 0 24 24"><path d="M5.5 8h13l-1 12h-11z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><sup class="count"></sup></button>
+          <p class="word">ELITÉ</p>
+          <p class="word2">LOUNGE BAR</p>
+          <div class="dia"><i></i><s></s><i></i></div>
+          <p class="table">Tavolo 5 · si ordina da qui, si paga al banco</p>
+        </header>
+        <button class="banner" data-cat="speciali"><span><small>DELLA CASA</small><b>SPECIALI ELITÉ</b><em class="sp-names"></em></span></button>
+        <div class="arches"></div>
+        <div class="home-more">
+          <p class="subh"><i></i><s></s><span>E inoltre</span><s></s><i></i></p>
+          <div class="more"></div>
+        </div>
+        <p class="colophon">Si ordina dal tavolo, si paga al banco.</p>
+      </section>
+
+      <!-- CATEGORIA -->
+      <section class="view" data-view="cat" aria-label="Categoria">
+        <button class="ib l" data-go="back" aria-label="Indietro"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="ib r" data-go="order" aria-label="Il vostro ordine"><svg viewBox="0 0 24 24"><path d="M5.5 8h13l-1 12h-11z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><sup class="count"></sup></button>
+        <div class="chero">
+          <div class="rays"></div>
+          <span class="arch"><span class="ph cat-ph"></span></span>
+          <p class="caps">La carta</p>
+          <h2 class="cat-title"></h2>
+          <p class="i cat-sub"></p>
+          <div class="dia"><i></i><s></s><i></i></div>
+        </div>
+        <div class="clist"></div>
+      </section>
+
+      <!-- RICERCA -->
+      <section class="view" data-view="search" aria-label="Cerca">
+        <button class="ib l" data-go="back" aria-label="Indietro"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="stop"><input type="search" placeholder="Un drink, un'etichetta…" aria-label="Cerca nella carta" autocomplete="off"></div>
+        <div class="slist"><p class="none">Scrivete il nome di un drink, di un gin o di una categoria.</p></div>
+      </section>
+
+      <!-- SCHEDA -->
+      <section class="view" data-view="pdp" aria-label="Scheda prodotto">
+        <button class="ib r" data-go="back" aria-label="Chiudi"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        <div class="pdp">
+          <div class="rays"></div>
+          <div class="window"><div class="big"></div></div>
+          <p class="caps p-cat"></p>
+          <h2 class="p-name"></h2>
+          <p class="pprice p-price"></p>
+          <p class="pdesc p-desc"></p>
+          <div class="optbox">
+            <p class="subh"><i></i><s></s><span>Come lo desiderate</span><s></s><i></i></p>
+            <div class="opts" role="radiogroup" aria-label="Come lo desiderate"></div>
+          </div>
+          <p class="subh"><i></i><s></s><span>Una richiesta</span><s></s><i></i></p>
+          <input class="req" placeholder="poco ghiaccio, scorza di limone…" aria-label="Una richiesta per il bancone">
+        </div>
+      </section>
+
+      <!-- ORDINE -->
+      <section class="view" data-view="order" aria-label="Il vostro ordine">
+        <button class="ib l" data-go="back" aria-label="Indietro"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="ord">
+          <div class="rays"></div>
+          <p class="caps">Tavolo 5</p>
+          <h2>Il vostro ordine</h2>
+          <div class="dia"><i></i><s></s><i></i></div>
+          <div class="lines"></div>
+          <p class="subh"><i></i><s></s><span>Come vi serviamo</span><s></s><i></i></p>
+          <div class="serve" role="radiogroup" aria-label="Servizio">
+            <button class="sel" role="radio" aria-checked="true" data-serve="tavolo"><b>Al tavolo 5</b><span>ve lo portiamo noi</span></button>
+            <button role="radio" aria-checked="false" data-serve="banco"><b>Al banco</b><span>vi chiamiamo per nome</span></button>
+          </div>
+          <div class="field nm"><label for="dc-name">Il vostro nome</label><input id="dc-name" autocomplete="given-name"><p class="msg">Scrivete il vostro nome, così sappiamo a chi portarlo.</p></div>
+          <p class="paynote">Il pagamento avviene al banco, in contanti o con carta.</p>
+        </div>
+      </section>
+
+      <!-- CONFERMA -->
+      <section class="view" data-view="done" aria-label="Ordine inviato">
+        <div class="done">
+          <div class="rays"></div>
+          <p class="caps" style="position:relative">Ordine n. 1027</p>
+          <h2>GRAZIE</h2>
+          <p class="where">Ve lo serviamo al tavolo 5.</p>
+          <div class="steps"><div class="now">Ricevuto</div><div>In preparazione</div><div>Servito</div></div>
+          <button class="link" data-go="home">Torna alla carta</button>
+        </div>
+      </section>
+
+      <button class="orderbar" data-go="order"><span class="ob-n"></span><span class="ob-t"></span></button>
+      <div class="dock dock-add">
+        <div class="qty"><button data-q="-1" aria-label="Uno in meno">−</button><span class="qn">1</span><button data-q="1" aria-label="Uno in più">+</button></div>
+        <button class="cta add"><span class="lbl">Aggiungi</span><i class="ptot"></i></button>
+      </div>
+      <div class="dock dock-send">
+        <div class="tt"><span>TOTALE</span><b class="tot"></b></div>
+        <button class="cta send">Invia l'ordine</button>
+      </div>
+      <div class="toast" role="status"></div>
+    </div></div>
+
+    <div class="switch" aria-label="Schermate">
+      <button class="on" data-jump="home">Carta</button>
+      <button data-jump="gin">Gin</button>
+      <button data-jump="pdp">Scheda</button>
+      <button data-jump="order">Ordine</button>
+    </div>
+    <p class="hint">Prototipo cliccabile · tutte le categorie, prodotti e prezzi veri</p>
   </div>
 </div></template>
 <template id="t-direzioni"><style>
@@ -3548,6 +3991,243 @@ function initAmbra(root) {
     return `<button class="blk" data-cat="${i}"><span class="lume ${s.img}"></span><span class="shade"></span><span class="cap"><i></i><b>${esc(s.n)}</b><span>${label(s)}</span></span></button>`;
   }).join('')}</div>`).join('');
   $('.featured').innerHTML = ['Aperol Spritz', 'Mare', 'Hugo spritz', 'Mojito analcolico'].map(find).filter(Boolean).map(item).join('');
+  renderBar();
+}
+
+
+
+function initDeco(root) {
+  // Categorie e prodotti veri del menu. Prodotto: [nome, prezzo in centesimi o null, foto, descrizione]
+  const S = [
+    {"n":"Aperitivi","l":"1","img":"sx-aperitivi","u":"proposte","p":[["Normale",100,"",""],["Gold",200,"",""]]},
+    {"n":"Caffetteria","l":"1/2","img":"sx-caffetteria","u":"proposte","p":[["Caffè espresso",120,"px-caffe",""],["Caffè macchiato",120,"px-caffe",""],["Caffè freddo",150,"px-caffe",""],["Caffè corretto",150,"px-caffe",""],["Cappuccino",150,"px-cappuccino",""],["Latte macchiato",120,"px-caffe",""],["Caffè decaffeinato",120,"px-caffe",""]]},
+    {"n":"Bevande varie","l":"1/2","img":"sx-bevande-varie","u":"proposte","p":[["The pesca",200,"px-the-pesca",""],["The limone",200,"px-the-limone",""],["Coca cola",200,"px-coca-cola",""],["Coca cola zero",200,"px-coca-cola-zero",""],["Gassosa",150,"",""],["Lemonsoda",200,"px-lemonsoda",""],["Acqua tonica",200,"px-acqua-tonica",""],["Fanta",200,"px-fanta",""],["RedBull",300,"px-redbull",""],["Acqua frizzante 1l",150,"",""],["Acqua frizzante 50cl",100,"",""],["Acqua naturale 1l",150,"",""],["Acqua naturale 50cl",100,"",""],["Succo di frutta",200,"",""]]},
+    {"n":"Bibite aperitivo","l":"1/3","img":"sx-bibite-aperitivo","u":"proposte","p":[["Campari soda",200,"px-campari-soda",""],["Cocktail San Pellegrino",200,"px-cocktail-san-pellegrino",""],["Crodino",200,"px-crodino",""]]},
+    {"n":"I più commerciali","l":"1/3","img":"sx-i-piu-commerciali","u":"ricette","p":[["Aperol Spritz",500,"px-aperol-spritz","Aperol, prosecco, soda"],["Campari spritz",500,"px-campari-spritz","Campari, prosecco, soda"],["Hugo spritz",600,"px-hugo-spritz","Prosecco, liquore ai fiori di sambuco, soda, menta"],["Passoa spritz",500,"px-passoa-spritz","Passoa, prosecco, soda"],["Malibu spritz",500,"px-malibu-spritz","Malibu, prosecco, soda"],["Americano",500,"px-americano","Bitter rosso, vermouth rosso, soda"],["Negroni",500,"px-americano","Gin, vermouth rosso, bitter"],["Negroni sbagliato",500,"px-americano","Bitter, vermouth rosso, prosecco"],["Vodka Martini",500,"px-vodka-martini","Vodka, vermouth dry"],["Cuba libre",500,"px-cuba-libre","Rum bianco, coca cola, succo di lime"],["Gin fizz",500,"px-gin-fizz","Gin, succo di limone, zucchero, soda"],["Mojito malibu",500,"px-mojito-malibu","Malibu, rum bianco, succo di lime, zucchero di canna, menta, soda"],["Pina colada",500,"px-pina-colada","Rum bianco, succo di ananas, latte di cocco"],["Mojito",500,"px-mojito","Rum bianco, succo di lime, zucchero di canna, menta, soda"],["Margarita",500,"px-margarita","Tequila, triple sec, succo di lime"],["Quattro bianchi",500,"px-quattro-bianchi","Gin, vodka, rum, tequila"],["RedBull wodka",500,"px-redbull-wodka","Redbull, vodka"]]},
+    {"n":"Gin","l":"1/3","img":"sx-gin","u":"etichette","p":[["Amuerte",900,"",""],["Portofino",1000,"px-portofino",""],["Mare Capri",900,"px-mare-capri",""],["Mare",600,"px-mare",""],["Hendricks",600,"px-hendricks",""],["Hendricks limited",800,"",""],["Mazzetti",600,"px-mazzetti",""],["Nordes",600,"px-nordes",""],["Malfy rosa",500,"px-malfy-rosa",""],["Butterfly",400,"px-butterfly",""],["Bombay",500,"px-bombay",""],["Tanqueray",500,"px-tanqueray",""],["Tanqueray Sevilla",600,"px-tanqueray-sevilla",""],["Apenera",800,"px-apenera",""]],"opt":["Tonic","Lemon"]},
+    {"n":"Birre","l":"1/2","img":"sx-birra","u":"etichette","p":[["Tennent’s 33cl",350,"px-tennets",""],["Corona 33cl",350,"px-corona",""],["Ceres 33cl",350,"px-ceres",""],["Beck's 33 cl",200,"px-becks",""],["Messina cristalli di sale",300,"px-messina-cristalli-di-sale",""],["Heineken 33cl",200,"px-heineken",""],["Birra dello stretto",250,"px-birra-dello-stretto",""]]},
+    {"n":"Vini bianchi","l":"1/2","img":"sx-vini-bianchi","u":"etichette","p":[["Sampieri calice",500,"px-vino-bianco",""],["Sampieri bottiglia",2500,"px-sampieri",""],["Castellucci Miano calice",400,"px-vino-bianco",""],["Castellucci miano bottiglia",2200,"",""],["Bianco di nera bottiglia",3500,"px-bianco-di-nera",""]]},
+    {"n":"Vini rossi","l":"1/3","img":"sx-vini-rossi","u":"etichette","p":[["Syrah",null,"",""],["Nero d’avola",null,"",""],["Rosso di nera",null,"px-rosso-di-nera",""]]},
+    {"n":"Cocktail analcolici","l":"1/3","img":"sx-cocktail-analcolici","u":"ricette","p":[["Mojito analcolico",400,"px-mojito-analcolico","Menta, succo di lime, zucchero di canna, soda"],["Virgin spritz",400,"px-virgin-spritz","Aperitivo analcolico frizzante, soda"],["Tropical sunset",400,"px-tropical-sunset","Succo d’arancia, succo d’ananas, sciroppo di granatina"],["Berry tonic",400,"px-berry-tonic","Sciroppo ai frutti di bosco, acqua tonica"],["Gold sunset",400,"px-gold-sunset","Succo d’arancia, succo d’ananas, sciroppo alla pesca"]]},
+    {"n":"Amari","l":"1/3","img":"sx-amari","u":"etichette","p":[["Amaro del capo",200,"px-amaro-del-capo",""],["Averna",200,"px-amaro-averna",""],["Montenegro",200,"px-amaro-montenegro",""],["Branca menta",200,"px-branca-menta",""],["Fernet branca",200,"px-fernet-branca",""],["Jägermeister",200,"",""],["Unicum",200,"px-unicum",""],["Vecchia Romagna",200,"px-vecchia-romagna",""]]},
+    {"n":"Whisky","l":"1/2","img":"sx-whisky","u":"etichette","p":[["Glen grant",null,"px-glen-grant",""],["J&B",null,"",""],["Jack daniel",null,"px-jack-daniels",""],["Chivas",null,"px-chivas",""]]},
+    {"n":"Grappe e rum","l":"1/2","img":"sx-grappe-e-rum","u":"etichette","p":[["903",null,"","Grappa"],["Mazzetti 3.0",null,"","Grappa"],["Don Papa",null,"px-don-papa","Rum"],["Diplomatico",null,"px-diplomatico","Rum"],["Tequila",null,"px-tequila","Tequila"]]},
+    {"n":"Liquori aromatici","l":"1/2","img":"sx-liquori-aromatici","u":"etichette","p":[["Bayles",null,"px-baileys",""],["Disaronno",null,"px-disaronno",""],["Limoncello",null,"px-limoncello",""],["Sambuca",null,"px-sambuca",""],["Southern comfort",null,"px-southern-comfort",""]]},
+    {"n":"Speciali","l":"1/2","img":"sx-speciali","u":"ricette","p":[["Élite gold",null,"",""],["Élite tropical",null,"",""],["Élite reserve",null,"",""]]},
+  ];
+  const GIN = 'Servito con ghiaccio e, a vostra scelta, tonic o lemon.';
+  // Le categorie della carta déco: le principali in arco, le altre in un indice
+  const CATS = {
+    cocktail: { t: 'Cocktail', s: ['I più commerciali'], img: 'sx-i-piu-commerciali', note: (n, m) => `${n} ricette, da ${m}` },
+    gin: { t: 'Gin', s: ['Gin'], img: 'sx-gin', note: n => `${n} etichette, tonic o lemon`, sub: 'Serviti con ghiaccio e, a vostra scelta, tonic o lemon.' },
+    vini: { t: 'Vini', s: ['Vini bianchi', 'Vini rossi'], img: 'sx-vini-rossi', note: () => 'al calice e in bottiglia' },
+    aperitivo: { t: 'Aperitivo', s: ['Aperitivi', 'Bibite aperitivo'], img: 'sx-aperitivi', note: () => 'taglieri e bitter' },
+    dopo: { t: 'Dopo cena', s: ['Amari', 'Whisky', 'Grappe e rum', 'Liquori aromatici'], img: 'sx-amari', note: () => 'amari, whisky, rum' },
+    birre: { t: 'Birre', s: ['Birre'], img: 'sx-birra', note: n => `${n} etichette` },
+    speciali: { t: 'Speciali Elité', s: ['Speciali'], img: 'sx-speciali', sub: 'Le ricette della casa: chiedete al bancone.' },
+    caffe: { t: 'Caffetteria', s: ['Caffetteria'], img: 'sx-caffetteria' },
+    bevande: { t: 'Bevande', s: ['Bevande varie'], img: 'sx-bevande-varie' },
+    analcolici: { t: 'Analcolici', s: ['Cocktail analcolici'], img: 'sx-cocktail-analcolici' },
+  };
+  const ARCHES = ['cocktail', 'gin', 'vini', 'aperitivo', 'dopo', 'birre'];
+  const MORE = ['caffe', 'bevande', 'analcolici'];
+
+  const eur = c => (c / 100).toLocaleString('it-IT', { minimumFractionDigits: 2 }) + ' €';
+  const short = c => (c % 100 ? eur(c) : (c / 100) + ' €');
+  const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+  const $ = s => root.querySelector(s);
+  const $$ = s => root.querySelectorAll(s);
+  const screen = $('.screen');
+  const secIdx = name => S.findIndex(s => s.n === name);
+  const idsOf = key => CATS[key].s.flatMap(n => { const i = secIdx(n); return i < 0 ? [] : S[i].p.map((_, j) => i + ':' + j); });
+  const prod = id => {
+    const [s, i] = id.split(':').map(Number);
+    const [name, price, img, desc] = S[s].p[i];
+    return { id, sec: S[s], name, price, img, opt: S[s].opt || null, desc: desc || (S[s].opt ? GIN : '') };
+  };
+  const find = name => { for (let s = 0; s < S.length; s++) { const i = S[s].p.findIndex(p => p[0] === name); if (i >= 0) return s + ':' + i; } return null; };
+  const ginKey = 'gin';
+
+  let cart = [{ id: find('Aperol Spritz'), opt: '', note: '', qty: 1 }];
+  let current = 'home', history = [], catKey = ginKey, prodId = null, choice = '', qty = 1, serve = 'tavolo';
+  const total = () => cart.reduce((t, l) => t + prod(l.id).price * l.qty, 0);
+  const count = () => cart.reduce((t, l) => t + l.qty, 0);
+  const inCart = id => cart.filter(l => l.id === id).reduce((t, l) => t + l.qty, 0);
+
+  const mini = p => `<span class="mini">${p.img ? `<span class="cut ${p.img}"></span>` : `<span class="ini">${esc(p.name.charAt(0))}</span>`}</span>`;
+  function row(id) {
+    const p = prod(id), n = inCart(id);
+    const sub = p.opt ? 'tonic o lemon' : p.desc;
+    const price = p.price == null ? '<span class="na">al banco</span>' : `<span class="pr">${eur(p.price).replace(' €', '')}</span>`;
+    const plus = p.price == null ? '' : `<button class="dplus${n ? ' in' : ''}" data-add="${id}" aria-label="Aggiungi ${esc(p.name)}"><span>${n || '+'}</span></button>`;
+    return `<div class="row"><button class="row-open" data-p="${id}">${mini(p)}<span class="rt"><span class="rn"><b>${esc(p.name)}</b><i></i>${price}</span>${sub ? `<em>${esc(sub)}</em>` : ''}</span></button>${plus}</div>`;
+  }
+  const refreshPlus = () => $$('[data-add]').forEach(b => { const n = inCart(b.dataset.add); b.classList.toggle('in', n > 0); b.innerHTML = `<span>${n || '+'}</span>`; });
+
+  function go(name) {
+    if (name === 'back') name = history.pop() || 'home';
+    else if (name !== current) history.push(current);
+    $$('.view').forEach(v => v.classList.toggle('on', v.dataset.view === name));
+    const v = root.querySelector(`.view[data-view="${name}"]`);
+    if (v && name !== 'home') v.scrollTop = 0;
+    current = name;
+    if (name === 'order') renderOrder();
+    if (name === 'search') setTimeout(() => $('.stop input').focus({ preventScroll: true }), 300);
+    const tab = name === 'cat' && catKey === ginKey ? 'gin' : name;
+    $$('.switch button').forEach(b => b.classList.toggle('on', b.dataset.jump === tab));
+    renderBar();
+  }
+
+  function openCat(key) {
+    catKey = key;
+    const c = CATS[key], ids = idsOf(key);
+    $('.cat-ph').className = 'ph cat-ph ' + c.img;
+    $('.cat-title').textContent = c.t;
+    const priced = ids.map(prod).filter(p => p.price != null);
+    $('.cat-sub').textContent = c.sub || (priced.length ? `${ids.length} proposte, da ${short(Math.min(...priced.map(p => p.price)))}` : `${ids.length} proposte`);
+    $('.clist').innerHTML = c.s.map(n => {
+      const i = secIdx(n); if (i < 0) return '';
+      return (c.s.length > 1 ? `<p class="subh"><i></i><s></s><span>${esc(n)}</span><s></s><i></i></p>` : '') + S[i].p.map((_, j) => row(i + ':' + j)).join('');
+    }).join('');
+    go('cat');
+  }
+
+  function openProduct(id) {
+    prodId = id; choice = ''; qty = 1;
+    const p = prod(id), big = $('.big');
+    big.className = 'big ' + (p.img || 'ini');
+    big.textContent = p.img ? '' : p.name.charAt(0);
+    big.style.animation = 'none'; void big.offsetWidth; big.style.animation = '';
+    $('.p-cat').textContent = p.sec.n;
+    $('.p-name').textContent = p.name;
+    $('.p-price').textContent = p.price == null ? 'al banco' : eur(p.price);
+    $('.p-desc').textContent = p.desc;
+    $('.p-desc').hidden = !p.desc;
+    $('.optbox').hidden = !p.opt;
+    $('.opts').innerHTML = (p.opt || []).map(o => `<button role="radio" aria-checked="false" data-opt="${o}">${o}</button>`).join('');
+    $('.req').value = '';
+    $('.qty').hidden = p.price == null;
+    renderPdp();
+    go('pdp');
+  }
+  function renderPdp() {
+    const p = prod(prodId), add = $('.add');
+    $('.qn').textContent = qty;
+    if (p.price == null) { add.disabled = true; add.querySelector('.lbl').textContent = 'Si ordina al banco'; return; }
+    const need = p.opt && !choice;
+    add.disabled = !!need;
+    add.querySelector('.lbl').textContent = need ? 'Scegliete ' + p.opt.join(' o ').toLowerCase() : 'Aggiungi';
+    $('.ptot').textContent = eur(p.price * qty);
+  }
+
+  function addLine(id, opt, note, n) {
+    const f = cart.find(l => l.id === id && l.opt === opt && l.note === note);
+    if (f) f.qty += n; else cart.push({ id, opt, note, qty: n });
+    refreshPlus(); renderBar();
+  }
+
+  function renderBar() {
+    const n = count();
+    $$('.count').forEach(el => el.textContent = n || '');
+    $('.ob-n').textContent = `${n} ${n === 1 ? 'DRINK' : 'DRINK'}`;
+    $('.ob-t').textContent = `RIVEDI · ${eur(total())}`;
+    $('.orderbar').classList.toggle('show', n > 0 && (current === 'home' || current === 'cat'));
+    $('.dock-add').classList.toggle('show', current === 'pdp');
+    $('.dock-send').classList.toggle('show', current === 'order');
+  }
+
+  function renderOrder() {
+    $('.lines').innerHTML = cart.length ? cart.map((l, i) => {
+      const p = prod(l.id);
+      const sub = [l.opt ? 'con ' + l.opt : '', l.note].filter(Boolean).map(esc).join(' · ');
+      return `<div class="ln">${mini(p)}<div><span class="rn"><b>${esc(p.name)}</b><i></i><span class="pr">${eur(p.price * l.qty).replace(' €', '')}</span></span>${sub ? `<em>${sub}</em>` : ''}<span class="step"><button data-i="${i}" data-d="-1" aria-label="Uno in meno">−</button>${l.qty}<button data-i="${i}" data-d="1" aria-label="Uno in più">+</button></span></div></div>`;
+    }).join('') : '<p class="empty">Il vostro ordine è ancora vuoto.</p>';
+    $('.tot').textContent = eur(total());
+    $('.send').disabled = !cart.length;
+  }
+
+  function renderSearch() {
+    const q = $('.stop input').value.trim().toLowerCase();
+    if (!q) { $('.slist').innerHTML = '<p class="none">Scrivete il nome di un drink, di un gin o di una categoria.</p>'; return; }
+    const groups = S.map((s, i) => ({ s, ids: s.p.map((p, j) => s.n.toLowerCase().includes(q) || p[0].toLowerCase().includes(q) || (p[3] || '').toLowerCase().includes(q) ? i + ':' + j : null).filter(Boolean) })).filter(g => g.ids.length);
+    $('.slist').innerHTML = groups.length ? groups.map(g => `<p class="subh"><i></i><s></s><span>${esc(g.s.n)}</span><s></s><i></i></p>${g.ids.map(row).join('')}`).join('') : `<p class="none">Nessun prodotto per “${esc(q)}”.</p>`;
+  }
+
+  function toast(msg) {
+    const t = $('.toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 1800);
+  }
+
+  screen.addEventListener('click', e => {
+    const c = sel => e.target.closest(sel);
+    if (c('[data-add]')) {
+      const id = c('[data-add]').dataset.add, p = prod(id);
+      if (p.opt) return openProduct(id);
+      addLine(id, '', '', 1);
+      return toast(`${p.name} aggiunto`);
+    }
+    if (c('[data-p]')) return openProduct(c('[data-p]').dataset.p);
+    if (c('[data-cat]')) return openCat(c('[data-cat]').dataset.cat);
+    if (c('[data-opt]')) {
+      const b = c('[data-opt]'); choice = b.dataset.opt;
+      $$('.opts button').forEach(x => { const on = x === b; x.classList.toggle('sel', on); x.setAttribute('aria-checked', String(on)); });
+      return renderPdp();
+    }
+    if (c('[data-q]')) { qty = Math.max(1, Math.min(20, qty + Number(c('[data-q]').dataset.q))); return renderPdp(); }
+    if (c('.add')) {
+      const p = prod(prodId);
+      addLine(prodId, choice, $('.req').value.trim().slice(0, 60), qty);
+      toast(`${p.name} aggiunto`);
+      return go('back');
+    }
+    if (c('[data-d]')) {
+      const b = c('[data-d]'), l = cart[Number(b.dataset.i)];
+      l.qty += Number(b.dataset.d);
+      if (l.qty <= 0) cart.splice(Number(b.dataset.i), 1);
+      renderOrder(); refreshPlus(); return renderBar();
+    }
+    if (c('[data-serve]')) {
+      const b = c('[data-serve]'); serve = b.dataset.serve;
+      $$('[data-serve]').forEach(x => { const on = x === b; x.classList.toggle('sel', on); x.setAttribute('aria-checked', String(on)); });
+      return;
+    }
+    if (c('.send')) {
+      const name = $('#dc-name').value.trim();
+      if (!name) { $('.field.nm').classList.add('err'); $('#dc-name').focus({ preventScroll: true }); return; }
+      $('.where').textContent = serve === 'tavolo' ? 'Ve lo serviamo al tavolo 5.' : `Vi chiamiamo al banco, ${name}.`;
+      cart = []; history = [];
+      refreshPlus();
+      return go('done');
+    }
+    if (c('[data-go]')) go(c('[data-go]').dataset.go);
+  });
+  $('#dc-name').addEventListener('input', () => $('.field.nm').classList.remove('err'));
+  $('.stop input').addEventListener('input', renderSearch);
+
+  $('.switch').addEventListener('click', e => {
+    const b = e.target.closest('[data-jump]'); if (!b) return;
+    const j = b.dataset.jump;
+    history = [];
+    if (j === 'gin' || j === 'pdp') {
+      current = 'home';
+      openCat(ginKey);
+      history = ['home'];
+      if (j === 'pdp') { openProduct(find('Hendricks')); history = ['home', 'cat']; }
+      return;
+    }
+    go(j);
+    history = [];
+  });
+
+  // Prima stampa della home
+  const spec = idsOf('speciali').map(prod).map(p => p.name.replace(/^Élite\s*/i, '').replace(/^./, ch => ch.toUpperCase()));
+  $('.sp-names').textContent = spec.join(' · ');
+  $('.arches').innerHTML = ARCHES.map(k => {
+    const c = CATS[k], ids = idsOf(k), priced = ids.map(prod).filter(p => p.price != null);
+    const m = priced.length ? short(Math.min(...priced.map(p => p.price))) : '';
+    return `<button class="ac" data-cat="${k}"><span class="arch"><span class="ph ${c.img}"></span></span><b>${esc(c.t)}</b><em>${esc(c.note(ids.length, m))}</em></button>`;
+  }).join('');
+  $('.more').innerHTML = MORE.map(k => `<button class="idx" data-cat="${k}"><s></s><b>${esc(CATS[k].t)}</b><i></i><span>${idsOf(k).length}</span></button>`).join('');
   renderBar();
 }
 
